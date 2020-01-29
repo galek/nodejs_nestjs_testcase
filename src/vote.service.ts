@@ -1,35 +1,60 @@
-﻿import { AppService } from "./app.service";
-import { Controller, Body, Post, ValidationPipe, Req, Injectable } from "@nestjs/common";
+﻿﻿import { AppService } from "./app.service";
+import { Controller, Body, Post, Get, ValidationPipe, Req, Injectable } from "@nestjs/common";
 import { PayLoadObject, AbstactToken, AbstactKey, ResponseObject } from "./interfaces";
 import * as rawbody from 'raw-body';
 
 @Injectable()
 export class DBDriver {
-  votesArray: Array<{ voteFor: string, voteCount: number }>
-    = new Array<{ voteFor: string, voteCount: number }>();
+  votesArray: Array<{ name: string, votes: number }>
+    = new Array<{ name: string, votes: number }>();
 
   writeToDB(value: string): ResponseObject {
     if (!value) return { success: false };
     return this._logicImpl(value);
   }
 
+  getResults() {
+    // this.votesArray.sort((a, b) => {
+    //   if (a.votes > b.votes) { return -1; }
+    //   if (a.votes < b.votes) { return 1; }
+    //   return 0;
+    // });
+    this.votesArray.sort((a, b) => {
+      return a.votes - b.votes;
+    });
+
+    return this.votesArray;
+  }
+
   private _logicImpl(value: string) {
 
-    // console.warn(JSON.stringify(this.votesArray));
+    if (console) console.warn(JSON.stringify(this.votesArray));
 
-    let obj = this.votesArray.find(obj => obj.voteFor === value);
+    let obj = this.votesArray.find(obj => obj.name === value);
     if (obj) {
-      // console.warn('find before: ' + obj.voteCount);
-      obj.voteCount++;
-      // console.warn('find now: ' + obj.voteCount);
+      if (console) console.warn('find before: ' + obj.votes);
+      obj.votes++;
+      if (console) console.warn('find now: ' + obj.votes);
       return { success: true };
     }
     else {
-      this.votesArray.push({ voteFor: value, voteCount: 1 });
+      this.votesArray.push({ name: value, votes: 1 });
       return { success: true };
     }
 
   }
+}
+
+
+@Controller('results')
+export class Results {
+  constructor(private readonly appService: AppService, private readonly dbDriver: DBDriver) { }
+
+  @Get()
+  async results() {
+    return JSON.stringify(this.dbDriver.getResults());
+  }
+
 }
 
 
