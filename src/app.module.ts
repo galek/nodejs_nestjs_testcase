@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
-import { AppController, ResultController, VoteController } from './app.controller';
+import { AppController, ResultController } from './app.controller';
+import { VoteController, AbstractToken, DBDriver } from './vote.service';
+
 import { AppService } from './app.service';
 
 @Module({
-  controllers: [AppController, ResultController, VoteController],
-  providers: [AppService],
+  controllers: [AppController, ResultController, VoteController, AbstractToken],
+  providers: [AppService, DBDriver],
 })
-export class AppModule {}
+export class AppModule { }

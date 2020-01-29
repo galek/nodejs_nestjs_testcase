@@ -28,14 +28,3 @@ export class ResultController {
     return obj;
   }
 }
-
-@Controller('vote')
-export class VoteController {
-  constructor(private readonly appService: AppService) { }
-
-  @Post()
-  async vote(@Body() item: PayLoadObject) {
-    if (item) return 'implemented ' + JSON.stringify(item);
-    return 'Not yet implemented ' + JSON.stringify(item);
-  }
-}
