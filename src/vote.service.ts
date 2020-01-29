@@ -1,13 +1,34 @@
-import { AppService } from "./app.service";
+﻿import { AppService } from "./app.service";
 import { Controller, Body, Post, ValidationPipe, Req, Injectable } from "@nestjs/common";
 import { PayLoadObject, AbstactToken, AbstactKey, ResponseObject } from "./interfaces";
 import * as rawbody from 'raw-body';
 
 @Injectable()
 export class DBDriver {
+  votesArray: Array<{ voteFor: string, voteCount: number }>
+    = new Array<{ voteFor: string, voteCount: number }>();
+
   writeToDB(value: string): ResponseObject {
     if (!value) return { success: false };
-    return { success: true };
+    return this._logicImpl(value);
+  }
+
+  private _logicImpl(value: string) {
+
+    // console.warn(JSON.stringify(this.votesArray));
+
+    let obj = this.votesArray.find(obj => obj.voteFor === value);
+    if (obj) {
+      // console.warn('find before: ' + obj.voteCount);
+      obj.voteCount++;
+      // console.warn('find now: ' + obj.voteCount);
+      return { success: true };
+    }
+    else {
+      this.votesArray.push({ voteFor: value, voteCount: 1 });
+      return { success: true };
+    }
+
   }
 }
 
