@@ -11,3 +11,6 @@ export interface ResponseObject {
 export interface PayLoadObject {
   voteFor: string;
 }
+
+export interface AbstactKey { accessKey: string; }
+export interface AbstactToken { accessToken: string; }
