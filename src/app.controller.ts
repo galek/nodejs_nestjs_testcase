@@ -14,17 +14,3 @@ export class AppController {
     return { message };
   }
 }
-
-// https://docs.nestjs.com/controllers
-
-@Controller('results')
-export class ResultController {
-  constructor(private readonly appService: AppService) { }
-
-  @Get()
-  results() {
-    // TODO: Уточни это массив, или просто пояснение, скорее всего пояснение
-    let obj: ResultObject = { name: '1', votes: 1, position: 2 };
-    return obj;
-  }
-}
