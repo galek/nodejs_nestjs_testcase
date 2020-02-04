@@ -13,7 +13,7 @@ export class DBDriver {
     return this._logicImpl(value);
   }
 
-  getResults() {
+  async getResults() {
     this.votesArray.sort((a, b) => {
       if (a.votes > b.votes) { return -1; }
       if (a.votes < b.votes) { return 1; }
