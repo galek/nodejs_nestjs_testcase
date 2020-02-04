@@ -1,6 +1,6 @@
-﻿import { AppService } from "./app.service";
-import { Controller, Body, Post, Get, ValidationPipe, Req, Injectable } from "@nestjs/common";
-import { PayLoadObject, AbstactToken, AbstactKey, ResponseObject } from "./interfaces";
+﻿import { Injectable, Controller, UseGuards, Get, Post, Body, Req } from "@nestjs/common";
+import { ResponseObject } from "./interfaces";
+import { AuthGuard } from "@nestjs/passport";
 import * as rawbody from 'raw-body';
 
 @Injectable()
@@ -14,11 +14,11 @@ export class DBDriver {
   }
 
   getResults() {
-    // this.votesArray.sort((a, b) => {
-    //   if (a.votes > b.votes) { return -1; }
-    //   if (a.votes < b.votes) { return 1; }
-    //   return 0;
-    // });
+    this.votesArray.sort((a, b) => {
+      if (a.votes > b.votes) { return -1; }
+      if (a.votes < b.votes) { return 1; }
+      return 0;
+    });
 
     // TODO:Errors and borderline cases must be taken into account
     // BUG: Частный случай: - когда votes одинаковы, отрабатывается первый (надо сделать по дате)
@@ -57,24 +57,22 @@ export class DBDriver {
   }
 }
 
-
 @Controller('results')
 export class Results {
-  constructor(private readonly appService: AppService, private readonly dbDriver: DBDriver) { }
+  constructor(private readonly dbDriver: DBDriver) { }
 
+  @UseGuards(AuthGuard('jwt'))
   @Get()
   async results() {
     return JSON.stringify(this.dbDriver.getResults());
   }
-
 }
-
-
 
 @Controller('vote')
 export class VoteController {
-  constructor(private readonly appService: AppService, private dbDriver: DBDriver) { }
+  constructor(private dbDriver: DBDriver) { }
 
+  @UseGuards(AuthGuard('jwt'))
   @Post()
   async vote(@Body() data, @Req() req) {
 
@@ -96,17 +94,4 @@ export class VoteController {
 
     // ...
   }
-}
-
-@Controller('gettoken')
-export class AbstractToken {
-  constructor(private readonly appService: AppService) { }
-
-  @Post()
-  async gettoken(@Body() item: AbstactKey) {
-    if (!item) { if (console) console.warn('token unproviden'); return {}; }
-
-    return { accessToken: '12' }
-  }
-
 }
