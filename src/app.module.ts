@@ -16,6 +16,6 @@ import { ExtractJwt } from 'passport-jwt';
       secret: 'secret'
     })],
   providers: [AuthService, AppService, DBDriver, LocalStrategy, JwtStrategy],
-  exports: [AuthService],
+  exports: [AuthService, LocalStrategy, JwtStrategy],
 })
 export class AppModule { }

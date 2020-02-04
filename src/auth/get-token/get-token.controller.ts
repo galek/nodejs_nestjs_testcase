@@ -81,6 +81,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
 @Controller('get-token')
 export class GetTokenController {
+
+    @UseGuards(AuthGuard('local'))
     @Post()
     async generateTokenByKey(@Body() data, @Req() req) {
         return { accessToken: 'string', provided: data.accessKey, accessKey: 'str' }
