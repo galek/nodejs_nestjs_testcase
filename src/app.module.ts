@@ -4,18 +4,18 @@ import { VoteController, AbstractToken, DBDriver, Results } from './vote.service
 
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { GetTokenController, AuthService, LocalStrategy, JwtStrategy } from './auth/get-token/get-token.controller';
 
 import { JwtModule } from '@nestjs/jwt';
-import { ExtractJwt } from 'passport-jwt';
+import { PassportModule } from '@nestjs/passport';
+import { UsersModule } from './users/users.module';
 
 @Module({
-  controllers: [AppController, VoteController, AbstractToken, Results, GetTokenController],
-  imports: [AuthModule,
+  controllers: [AppController, VoteController, AbstractToken, Results],
+  imports: [UsersModule, AuthModule,
     JwtModule.register({
-      secret: 'secret'
-    })],
-  providers: [AuthService, AppService, DBDriver, LocalStrategy, JwtStrategy],
-  exports: [AuthService, LocalStrategy, JwtStrategy],
+      secret: 'secret',
+      signOptions: { expiresIn: '60s' }
+    }), PassportModule],
+  providers: [AppService, DBDriver],
 })
 export class AppModule { }

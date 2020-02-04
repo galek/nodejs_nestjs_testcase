@@ -1,29 +1,20 @@
-import { Get, Post, Controller, Request, Body, Render, Param, UseGuards } from '@nestjs/common';
-import { AppService } from './app.service';
-import { Response } from 'express';
-import { ResultObject, ResponseObject, PayLoadObject } from './interfaces';
+import { Controller, Get, Request, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { AuthService } from './auth/auth.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) { }
-
-  //  @Render('index')
-  @Get()
-  render() {
-    const message = this.appService.getHello();
-    return { message };
-  }
+  constructor(private readonly authService: AuthService) {}
 
   @UseGuards(AuthGuard('local'))
   @Post('auth/login')
   async login(@Request() req) {
-    return false;
+    return this.authService.login(req.user);
   }
 
   @UseGuards(AuthGuard('jwt'))
   @Get('profile')
   getProfile(@Request() req) {
-    return true;
+    return req.user;
   }
 }
