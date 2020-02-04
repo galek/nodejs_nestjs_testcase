@@ -1,11 +1,11 @@
 # NestJS Test-case
 
-#Building
+# Building
 - unpack archive to your directory
 - cd this directory
 - npm install
 - npm run start
 
-##TODO
+## TODO
 - Dynamic BD support (Mongo as example)
 - Docker file and documentatioin
