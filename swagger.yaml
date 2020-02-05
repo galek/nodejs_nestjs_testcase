@@ -1,0 +1,160 @@
+swagger: '2.0'
+info:
+  description: >-
+    <div class="alert alert-success">
+      Looking for the old <strong>swadit</strong>-version? It can be found <a href="https://swaditjs.misc-net.de" target="_blanc">here</a>.
+    </div>
+
+
+    This is a sample server Petstore server.  You can find out more about    
+    Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net,
+    #swagger](http://swagger.io/irc/).      For this sample, you can use the api
+    key `special-key` to test the authorization     filters.
+  version: 1.0.0
+  title: Swagger Petstore
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+host: petstore.swagger.io
+basePath: /v2
+tags:
+  - name: pet
+    description: Everything about your Pets
+    externalDocs:
+      description: Find out more
+      url: 'http://swagger.io'
+  - name: store
+    description: Access to Petstore orders
+  - name: user
+    description: Operations about user
+    externalDocs:
+      description: Find out more about our store
+      url: 'http://swagger.io'
+schemes:
+  - http
+paths:
+  /get-token:
+    post:
+      summary: Provides API for getting an access token.
+      operationId: '1'
+      responses:
+        '201':
+          description: Get token
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  username:
+                    type: string
+                  password:
+                    type: string
+                description: ''
+        '401':
+          description: Unauthorized
+  /vote:
+    post:
+      schemes:
+        - https
+      description: >-
+        Provide API which allows to vote and get vote results. All endpoints
+        work only with valid access
+
+        token which is passing in headers.
+      responses:
+        '201':
+          description: Success result
+          schema:
+            type: object
+            properties:
+              success:
+                type: string
+                default: 'false'
+        '401':
+          description: Unauthorized
+      parameters:
+        - name: x-access-token
+          in: header
+          type: string
+          description: Token
+        - name: payload
+          in: body
+          schema:
+            type: object
+            properties:
+              voteFor:
+                type: string
+  /results:
+    get:
+      responses:
+        '200':
+          description: |-
+            OK
+            [{"name":"4","votes":1,"position":1}]
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                votes:
+                  type: string
+                position:
+                  type: string
+        '401':
+          description: Unauthorized
+securityDefinitions:
+  petstore_auth:
+    type: oauth2
+    authorizationUrl: 'http://petstore.swagger.io/oauth/dialog'
+    flow: implicit
+    scopes:
+      'write:pets': modify pets in your account
+      'read:pets': read your pets
+  api_key:
+    type: apiKey
+    name: api_key
+    in: header
+definitions:
+  accessKey:
+    type: object
+    description: payload
+    properties:
+      accessKey:
+        type: string
+  accessToken:
+    type: object
+    properties:
+      accessToken:
+        type: string
+  VoteIn:
+    type: object
+    properties:
+      x-access-token:
+        type: string
+      voteFor:
+        type: string
+  VoteOut:
+    type: object
+    properties:
+      x-access-token:
+        type: string
+      success:
+        type: boolean
+  Results:
+    type: object
+    properties:
+      x-access-token:
+        type: string
+      name:
+        type: string
+      votes:
+        type: number
+      position:
+        type: number
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'
