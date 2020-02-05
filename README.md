@@ -8,7 +8,14 @@
 
 ## TODO
 - BD support (Mongo as example)
-- Docker file and documentatioin
+- Docker file
+
+## Documentation
+- npm install typedoc --save-dev
+- run this command:
+```bash
+$ typedoc --out ./doc ./src
+```
 
 ## REST API
 
