@@ -18,6 +18,7 @@ import { jwtConstants } from './constants';
 
 /**
  * class what provided validation by jwt
+ * @public
  */
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -31,8 +32,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
   /**
    * Function what provided validation by jwt
+   * @public
    */
-  async validate(payload: any) {
+  public async validate(payload: any) {
     return { userId: payload.sub, username: payload.username };
   }
 }

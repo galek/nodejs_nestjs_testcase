@@ -16,7 +16,7 @@ import { Injectable } from "@nestjs/common";
 
 /**
  * DBDriver - emulation of DB, for test-case. Uses array inside. 
- * @private
+ * @public
  */
 @Injectable()
 export class DBDriver {

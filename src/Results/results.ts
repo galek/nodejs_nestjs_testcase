@@ -24,10 +24,11 @@ export class Results {
 
     /**
     * function what provided results from DB
+    * @public
     */
     @UseGuards(AuthGuard('jwt'))
     @Get()
-    async results() {
+    public async results() {
         return JSON.stringify(this.dbDriver.getResults());
     }
 }

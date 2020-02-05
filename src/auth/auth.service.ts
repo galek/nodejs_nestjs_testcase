@@ -18,6 +18,7 @@ import { AbstactToken } from '../common/interfaces';
 
 /**
  * Auth service
+ * @public
  */
 @Injectable()
 export class AuthService {
@@ -28,9 +29,10 @@ export class AuthService {
 
     /**
      * Function what provided validation by username-password
+     * @public
      * TODO: replace on one token FOR BELL
      */
-    async validateUser(username: string, pass: string): Promise<any> {
+    public async validateUser(username: string, pass: string): Promise<any> {
         const user = await this.usersService.findOne(username);
         if (user && user.password === pass) {
             const { password, ...result } = user;
@@ -41,9 +43,10 @@ export class AuthService {
 
     /**
      * Function providing login
+     * @public
      * TODO: replace on one token FOR BELL
      */
-    async login(user: any): Promise<AbstactToken> {
+    public async login(user: any): Promise<AbstactToken> {
         const payload = { username: user.username, sub: user.userId };
         return {
             access_token: this.jwtService.sign(payload),

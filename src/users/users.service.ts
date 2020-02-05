@@ -45,8 +45,9 @@ export class UsersService {
 
     /**
      * Function what will find a user what associated username
+     * @public
      */
-    async findOne(username: string): Promise<User | undefined> {
+    public async findOne(username: string): Promise<User | undefined> {
         return this.users.find(user => user.username === username);
     }
 }

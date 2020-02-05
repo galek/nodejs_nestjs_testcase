@@ -31,10 +31,11 @@ export class VoteController {
 
   /**
    * Function for vote
+   * @public
    */
   @UseGuards(AuthGuard('jwt'))
   @Post()
-  async vote(@Body() data, @Req() req) {
+  public async vote(@Body() data, @Req() req) {
 
     // we have to check req.readable because of raw-body issue #57
     // https://github.com/stream-utils/raw-body/issues/57

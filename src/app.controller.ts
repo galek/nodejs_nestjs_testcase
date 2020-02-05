@@ -24,21 +24,23 @@ export class AppController {
 
   /**
    * Function what will generate a token from username-password
+   * @public
    * TODO: replace on one token FOR BELL
    */
   @UseGuards(AuthGuard('local'))
   @Post('get-token')
-  async login(@Request() req) {
+  public async login(@Request() req) {
     return this.authService.login(req.user);
   }
 
   /**
    * Function what will provide info about user from provided user-id
+   * @public
    * TODO: replace on one token FOR BELL
    */
   @UseGuards(AuthGuard('jwt'))
   @Get('profile')
-  getProfile(@Request() req) {
+  public getProfile(@Request() req) {
     return req.user;
   }
 }

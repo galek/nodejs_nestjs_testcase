@@ -14,6 +14,7 @@
 /**
  * Interface of result object, what contains:
  * name,votes,position,timestamp
+ * @public
  */
 export interface ResultObject {
   name: string;
@@ -25,6 +26,7 @@ export interface ResultObject {
 /**
  * Interface of ResponseObject, what contains:
  * success
+ * @public
  */
 export interface ResponseObject {
   success: boolean;
@@ -33,6 +35,7 @@ export interface ResponseObject {
 /**
  * Interface of PayLoadObject, what contains:
  * voteFor
+ * @public
  */
 export interface PayLoadObject {
   voteFor: string;
@@ -54,6 +57,7 @@ export interface PayLoadObject {
 /**
  * Interface of AbstactKey, what contains:
  * accessToken
+ * @public
  */
 export interface AbstactToken { access_token: string; }
 
