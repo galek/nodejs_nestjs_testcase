@@ -1,12 +1,18 @@
-﻿import { Injectable, Controller, UseGuards, Get, Post, Body, Req } from "@nestjs/common";
-import { ResponseObject } from "./interfaces";
-import { AuthGuard } from "@nestjs/passport";
+﻿/*
+
+TODO: 
+1) Support uint numbers only for vote
+*/
+
+import { Injectable, Controller, UseGuards, Get, Post, Body, Req } from '@nestjs/common';
+import { ResponseObject } from './interfaces';
+import { AuthGuard } from '@nestjs/passport';
 import * as rawbody from 'raw-body';
 
 @Injectable()
 export class DBDriver {
-  votesArray: Array<{ name: string, votes: number, position: number }>
-    = new Array<{ name: string, votes: number, position: number }>();
+  votesArray: Array<{ name: string, votes: number, position: number, timestamp: number }>
+    = new Array<{ name: string, votes: number, position: number, timestamp: number }>();
 
   writeToDB(value: string): ResponseObject {
     if (!value) return { success: false };
@@ -21,9 +27,22 @@ export class DBDriver {
       return 0;
     });
 
-    // TODO:Errors and borderline cases must be taken into account
-    // BUG: Частный случай: - когда votes одинаковы, отрабатывается первый (надо сделать по дате)
+    /*
+    result: [{"name":"3","votes":2,"position":1,"timestamp":1580927100409},{"name":"4","votes":2,"position":2,"timestamp":1580927098313},{"name":"-1","votes":1,"position":3,"timestamp":1580927065863}]
+    */
     this.votesArray.sort((a, b) => {
+      // Частный случай: - когда votes одинаковы, обрабатываем приоритетный тот за который отдали первый голос (появился в базе данных самый первый)
+      // Что и делаем, вводим timestamp
+      // Можно сделать обработку как того, за которого отдали последний голос (см ниже)
+      // TODO: см 'тут определите логику как нужно'
+      if (b.votes === a.votes) {
+        if (console) console.log('votes is equal');
+
+        // Если нужно отображать тот за который проголосовали последним
+        // return b.timestamp - a.timestamp;
+        return a.timestamp - b.timestamp;
+      }
+      // Иначе обычная сортировка
       return b.votes - a.votes;
     });
 
@@ -48,10 +67,13 @@ export class DBDriver {
       obj.votes++;
       if (console) console.warn('find now: ' + obj.votes);
       return { success: true };
+      // TODO: тут определите логику как нужно
+      // Обновляем дату последнего голоса
+      // obj.timestamp = Date.now();
     }
     else {
       // Позиция не определена еще
-      this.votesArray.push({ name: value, votes: 1, position: 0 });
+      this.votesArray.push({ name: value, votes: 1, position: 0, timestamp: Date.now() });
       return { success: true };
     }
 
