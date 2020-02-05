@@ -21,7 +21,7 @@ export class DBDriver {
     }
 
     /**
-    * get results from db function. It's NOT async function!
+    * Implements get results from db function. It's NOT async function!
     * @public
     */
     public getResults() {
@@ -62,7 +62,7 @@ export class DBDriver {
     }
 
     /**
-    * Function what implement logic
+    * Implementation of logic
     * @private
     */
     private _logicImpl(value: string) {

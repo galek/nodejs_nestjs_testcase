@@ -2,6 +2,10 @@ import { Injectable } from '@nestjs/common';
 
 export type User = any;
 
+/**
+ * User-password container
+ * TODO: replace on one token FOR BELL
+ */
 @Injectable()
 export class UsersService {
     private readonly users: User[];
@@ -26,6 +30,9 @@ export class UsersService {
         ];
     }
 
+    /**
+     * Function what will find a user what associated username
+     */
     async findOne(username: string): Promise<User | undefined> {
         return this.users.find(user => user.username === username);
     }

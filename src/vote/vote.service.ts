@@ -9,10 +9,16 @@ import { AuthGuard } from '@nestjs/passport';
 import * as rawbody from 'raw-body';
 import { DBDriver } from '../DBDriver/dbdriver';
 
+/**
+ * Vote controller
+ */
 @Controller('vote')
 export class VoteController {
   constructor(private dbDriver: DBDriver) { }
 
+  /**
+   * Function for vote
+   */
   @UseGuards(AuthGuard('jwt'))
   @Post()
   async vote(@Body() data, @Req() req) {
@@ -32,7 +38,6 @@ export class VoteController {
       return this.dbDriver.writeToDB(data.voteFor);
 
     }
-
-    // ...
+    
   }
 }
