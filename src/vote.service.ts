@@ -5,22 +5,35 @@ TODO:
 */
 
 import { Injectable, Controller, UseGuards, Get, Post, Body, Req } from '@nestjs/common';
-import { ResponseObject } from './interfaces';
+import { ResponseObject, ResultObject } from './interfaces';
 import { AuthGuard } from '@nestjs/passport';
 import * as rawbody from 'raw-body';
 
+
+/**
+ * DBDriver - emulation of DB, for test-case. Uses array inside. 
+ * @private
+ */
 @Injectable()
 export class DBDriver {
-  votesArray: Array<{ name: string, votes: number, position: number, timestamp: number }>
-    = new Array<{ name: string, votes: number, position: number, timestamp: number }>();
+  votesArray: Array<ResultObject>
+    = new Array<ResultObject>();
 
-  writeToDB(value: string): ResponseObject {
+
+  /**
+  * Function for write value to db 
+  * @public
+  */
+  public writeToDB(value: string): ResponseObject {
     if (!value) return { success: false };
     return this._logicImpl(value);
   }
 
-  // It's not be async!
-  getResults() {
+  /**
+  * get results from db function. It's NOT async function!
+  * @public
+  */
+  public getResults() {
     this.votesArray.sort((a, b) => {
       if (a.votes > b.votes) { return -1; }
       if (a.votes < b.votes) { return 1; }
@@ -57,6 +70,10 @@ export class DBDriver {
     return this.votesArray;
   }
 
+  /**
+  * Function what implement logic
+  * @private
+  */
   private _logicImpl(value: string) {
 
     if (console) console.warn(JSON.stringify(this.votesArray));
