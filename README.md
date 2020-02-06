@@ -17,6 +17,16 @@
 $ typedoc --out ./doc ./src
 ```
 
+## DOCKER
+### Docker not tested (I not have infrastructure)
+- For generation docker file you can use:
+https://www.npmjs.com/package/generator-docker
+- cd projectdir
+- docker build ../nodejs_nestjs_testcase-docker
+- docker run -p 3000 nodejs_nestjs_testcase-docker
+
+np
+
 ## REST API
 
 ### Request
