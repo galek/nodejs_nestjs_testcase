@@ -394,3 +394,7 @@ dist
 doc/*
 /typedoc
 /typedoc.cmd
+/yo
+/yo-complete
+/yo-complete.cmd
+/yo.cmd
