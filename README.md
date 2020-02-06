@@ -15,7 +15,6 @@ npm run start:prod
 ```
 
 # Production
-- npm run prestart:prod
 - npm run start:prod
 
 ## TODO
