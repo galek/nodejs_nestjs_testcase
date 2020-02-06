@@ -13,6 +13,13 @@
 # https://www.bretfisher.com/node-docker-good-defaults/
 # http://goldbergyoni.com/checklist-best-practice-of-node-js-in-production/
 
+#FROM node
+#WORKDIR /src
+#EXPOSE 3000
+#ENTRYPOINT ["npm", "start"]
+#COPY . /src
+#RUN npm install
+
 FROM node:12-alpine as builder
 
 ENV NODE_ENV build
@@ -30,6 +37,8 @@ RUN npm ci \
 FROM node:12-alpine
 
 ENV NODE_ENV production
+
+EXPOSE 3000
 
 USER node
 WORKDIR /home/node
