@@ -1,17 +1,40 @@
-# NestJS Test-case
+﻿# NestJS Test-case
 
 # Building
 - unpack archive to your directory
 - cd this directory
-- npm install
-- npm run start
+- npm install (or npm ci in feature, if package-lock.json  is exist)
+
+- For development
+```bash
+npm run start
+```
+- For production
+```bash
+npm run start:prod
+```
+
+# Production
+- npm run prestart:prod
+- npm run start:prod
 
 ## TODO
-- BD support (Mongo as example)
-- Docker file
+- BD support (Mongo as example), with universal interface
+- Docker tests (needed infrastructure)
+- Admin panel
 
 ## Documentation
-- npm install typedoc --save-dev
+- For generation of documentation, run:
+```bash
+npm run doc
+```
+
+OR (For older versions of this)
+
+- If Typedoc not installed, run:
+```bash
+npm install --save-dev typedoc
+```
 - run this command:
 ```bash
 $ typedoc --out ./doc ./src
@@ -24,8 +47,6 @@ https://www.npmjs.com/package/generator-docker
 - cd projectdir
 - docker build ../nodejs_nestjs_testcase-docker
 - docker run -p 3000 nodejs_nestjs_testcase-docker
-
-np
 
 ## REST API
 
