@@ -449,3 +449,4 @@ doc/*
 /nodetouch
 /nopt
 /opencollective
+*.cmd
