@@ -14,6 +14,7 @@
 import { Module, Injectable, UnauthorizedException } from '@nestjs/common';
 import { AppController } from './app.controller';
 
+import { NuxtController } from './nuxt.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 
@@ -25,7 +26,7 @@ import { Results } from './Results/results';
 import { DBDriver } from './DBDriver/DBDriver';
 
 @Module({
-  controllers: [AppController, VoteController, Results],
+  controllers: [AppController, VoteController, Results, NuxtController],
   imports: [UsersModule, AuthModule,
     JwtModule.register({
       secret: 'secret',

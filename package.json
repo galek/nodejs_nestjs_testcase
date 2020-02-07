@@ -1,27 +1,25 @@
-﻿{
-  "name": "NGNB",
+{
+  "name": "nuxt",
   "version": "1.0.0",
-  "description": "Nick Galko example backend based on NestJS",
-  "license": "Proprietary",
+  "description": "My superior Nuxt.js project",
+  "author": "Nick Galko",
+  "private": true,
   "scripts": {
-    "build": "tsc",
-    "doc": "typedoc --out ./doc ./src",
-    "format": "prettier --write \"src/**/*.ts\"",
-    "start": "ts-node src/main.ts",
-    "start:dev": "nodemon",
-    "start:debug": "nodemon --config nodemon-debug.json",
-    "prestart:prod": "rimraf dist && tsc",
-    "start:prod": "node dist/main.js",
-    "start:hmr": "node dist/server",
-    "lint": "tslint -p tsconfig.json -c tslint.json",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:cov": "jest --coverage",
-    "test:e2e": "jest --config ./test/jest-e2e.json",
-    "webpack": "webpack --config webpack.config.js"
+	
+	"dev": "cross-env IS_NUXT_ENABLED=true nodemon",
+    "dev:client": "nuxt",
+    "dev:server": "nodemon",
+    "build": "run-s clean:dist compile:server compile:client copy:.nuxt copy:client copy:config",
+    "clean:dist": "rimraf dist",
+    "compile:server": "tsc -p tsconfig.build.json",
+    "compile:client": "cross-env mode=production nuxt build",
+    "copy:client": "copyfiles -a \"client/**/*\" dist",
+    "copy:.nuxt": "copyfiles -a \".nuxt/**/*\" dist",
+    "copy:config": "copyfiles nuxt.config.js package.json package-lock.json dist"
   },
   "dependencies": {
-    "@nestjs/common": "^5.1.0",
+    "nuxt": "^2.0.0",
+	"@nestjs/common": "^5.1.0",
     "@nestjs/core": "^5.1.0",
     "@nestjs/microservices": "^5.1.0",
     "@nestjs/testing": "^5.1.0",
@@ -36,14 +34,29 @@
     "passport-jwt":"^4.0.0",
     "hbs": "4.0.3",
     "reflect-metadata": "^0.1.12",
-    "rxjs": "^6.2.2",
-    "typescript": "^3.0.1"
+	
+	"@nestjs/common": "^6.7.2",
+    "@nestjs/core": "^6.7.2",
+    "@nestjs/platform-express": "^6.7.2",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.0",
+    "rxjs": "^6.5.3",
+	
+    "eslint": "^5.0.1",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-vue": "^4.0.0",
+    "vue-jest": "^4.0.0-0"
   },
   "devDependencies": {
-    "@types/express": "^4.16.0",
+    "@vue/test-utils": "^1.0.0-beta.27",
+    "babel-jest": "^24.1.0",
+    "jest": "^24.1.0",
+    "vue-jest": "^4.0.0-0",
+	
+	"@types/express": "^4.16.0",
     "@types/jest": "^23.3.1",
     "@types/supertest": "^2.0.5",
-    "jest": "^23.5.0",
+    "jest": "^24.1.0",
     "nodemon": "^1.18.3",
     "prettier": "^1.14.2",
     "rimraf": "^2.6.2",
@@ -54,29 +67,19 @@
     "ts-node": "^7.0.1",
     "tsconfig-paths": "^3.5.0",
     "tslint": "5.11.0",
-    "webpack": "^4.16.5",
-    "webpack-cli": "^3.1.0",
-    "webpack-node-externals": "^1.7.2"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": "src",
-    "testRegex": ".spec.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
-  },
-  "keywords": [
-    "nodejs",
-    "nestjs",
-    "nest",
-    "javascript",
-    "typescript"
-  ]
+	
+	"@nestjs/cli": "^6.9.0",
+    "@nestjs/schematics": "^6.7.0",
+    "@types/express": "^4.17.1",
+    "@types/node": "^12.7.5",
+    "copyfiles": "^2.1.0",
+    "cross-env": "^5.2.0",
+    "npm-run-all": "^4.1.5",
+    "ts-loader": "^6.1.1",
+    "ts-node": "^8.4.1",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.6.3",
+    "@vue/test-utils": "^1.0.0-beta.27",
+    "babel-jest": "^24.1.0"
+  }
 }

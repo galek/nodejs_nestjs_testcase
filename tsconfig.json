@@ -1,4 +1,4 @@
-{
+﻿{
   "compilerOptions": {
     "module": "commonjs",
     "declaration": true,
@@ -8,16 +8,18 @@
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es6",
+    "target": "es2017",
     "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "./src"
+    "outDir": "./dist/server",
+    "baseUrl": "./",
+    "incremental": true
   },
   "include": [
-    "src/**/*"
+    "server/**/*"
   ],
   "exclude": [
     "node_modules",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "dist"
   ]
 }
