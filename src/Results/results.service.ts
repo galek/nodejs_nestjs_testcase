@@ -1,20 +1,12 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+import { Injectable } from '@nestjs/common';
 import { DBDriverService } from '../DBDriver/dbdriver.service';
 
-
-@Controller('results')
+@Injectable()
 export class ResultsService {
     constructor(private readonly dbDriver: DBDriverService) {
     }
 
-    /**
-     * function what provided results from DB
-     * @public
-     */
-    @UseGuards(AuthGuard('jwt'))
-    @Get()
-    async results() {
+    results() {
         return JSON.stringify(this.dbDriver.getResults());
     }
 }

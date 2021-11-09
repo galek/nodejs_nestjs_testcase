@@ -6,11 +6,9 @@ import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { DBDriverService } from '../DBDriver/dbdriver.service';
 import { VoteService } from './vote.service';
 import { JwtAuthGuard } from "../auth/common/guards/jwt-auth.guard";
-import { ApiBearerAuth } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 
-/**
- * Vote controller
- */
+@ApiTags('Vote service')
 @Controller('vote')
 export class VoteController {
     constructor(private readonly dbDriver: DBDriverService, private readonly voteService: VoteService) {
