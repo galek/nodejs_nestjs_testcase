@@ -8,6 +8,7 @@ import { ApiTags } from "@nestjs/swagger";
 export class ResultsController {
     constructor(private readonly resultsService: ResultsService) {
     }
+
     @UseGuards(JwtAuthGuard)
     @Get()
     @Version('1')
