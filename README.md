@@ -44,6 +44,9 @@ You can use this is repository as a template for your microservices (how I do)
 - chris-secret
 - maria-guess
 
+### HealthChecs
+- liveness
+
 ### Additional information:
 1) [PM2 documentation](https://pm2.keymetrics.io/docs/usage/quick-start/).
 2) [Docker documentation](https://docs.docker.com/).

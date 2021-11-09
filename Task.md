@@ -1,8 +1,8 @@
-#Test assignment for Node.js developer
+# Test assignment for Node.js developer
 
 Needs to implement two REST API services which are form some vote application.
 
-###Authentication service
+### Authentication service
 Provides API for getting an access token.
 
 ```
@@ -11,7 +11,7 @@ payload: { accessKey: string }
 response: { accessToken: string }
 ```
 
-###Vote service
+### Vote service
 Provide API which allows to vote and get vote results. All endpoints work only with valid access
 token which is passing in headers.
 
@@ -32,7 +32,7 @@ response: { name: string; votes: number; position: number }[]
 ```
 Returns a list of items of a poll which is available only for voted token
 
-####Requirements
+#### Requirements
 - Node.js, Typescript, Nestjs should be used
 - Errors and borderline cases must be taken into account
 - The test assignment must be production ready
