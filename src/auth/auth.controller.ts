@@ -29,11 +29,4 @@ export class AuthController {
 
         return { status: true, result }
     }
-
-    /*
-    @UseGuards(JwtAuthGuard)
-    @Get('profile')
-    public getProfile() {
-        return { status: true, value: 'test' }
-    }*/
 }

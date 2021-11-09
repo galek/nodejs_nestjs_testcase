@@ -31,13 +31,17 @@ export class AuthService {
     ) {
     }
 
-    public async validateUser(username: string, pass: string): Promise<any> {
+    public async validateUser(username: string, password: string): Promise<any> {
+        console.assert(username?.length > 0, '[] invalid username has been provided');
+        console.assert(password?.length > 0, '[] invalid password has been provided');
+
+        if (!(username?.length >= 0) || !(password?.length >= 0)) return undefined;
+
         const user = await this.usersService.findOne(username);
-        if (user && user.password === pass) {
-            const { password, ...result } = user;
-            return result;
-        }
-        return null;
+        if (user?.password !== password) return undefined;
+
+        const { ...result } = user;
+        return result;
     }
 
     public async login(user: AuthInfoAddInfoDTO) {
