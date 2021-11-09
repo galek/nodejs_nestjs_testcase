@@ -17,6 +17,12 @@ You can use this is repository as a template for your microservices (how I do)
 ### Building
 #### Check what .env file is exists or create own (or send args from command line)
 
+### Features:
+- Swagger
+- Prometheus as monitoring tool
+- Sentry for reserve logging tool
+- SonarQube for code quality
+- Ready for using in docker/kubernetes (I hope what HELM charts you can create manually) 
 
 #### For local development
 - unpack archive to your directory
@@ -25,6 +31,12 @@ You can use this is repository as a template for your microservices (how I do)
 #### For production build
 - If is docker will be used: ```sh build_docker.sh``` or ```docker build -t testcase .```
 - If is docker is not available: ```npm install pm2 -g && (npm ci || npm i) && (npm run build && pm2 start 'npm run start:prod')```
+
+#### Swagger (OpenAPI)
+- Run your service
+- go to ``localhost:3000/api`` (port can be changed, and api endpoint in code) for swagger ui
+- go to ``localhost:3000/api/swagger.json`` for downloading swagger.json
+
 
 ### Additional information:
 1) [PM2 documentation](https://pm2.keymetrics.io/docs/usage/quick-start/).
