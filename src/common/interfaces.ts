@@ -4,10 +4,10 @@
  * @public
  */
 export interface ResultObject {
-    name: string;
-    votes: number;
-    position: number;
-    timestamp: number;
+  name: string;
+  votes: number;
+  position: number;
+  timestamp: number;
 }
 
 /**
@@ -16,10 +16,10 @@ export interface ResultObject {
  * @public
  */
 export interface ResponseObject {
-    success: boolean;
-    description?: string;
-    error?: string;
-    data?: unknown;
+  success: boolean;
+  description?: string;
+  error?: string;
+  data?: unknown;
 }
 
 /**
@@ -28,5 +28,5 @@ export interface ResponseObject {
  * @public
  */
 export interface PayLoadObject {
-    voteFor: string;
+  voteFor: string;
 }
