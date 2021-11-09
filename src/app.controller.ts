@@ -1,26 +1,10 @@
-/* Copyright (C) 2009-2020, Nick Galko. All rights reserved.
-*
-* This file is part of the Nick Galko source-code
-* (https://galek.github.io/portfolio/).
-*
-* Your use and or redistribution of this software in source and / or
-* binary form, with or without modification, is subject to: (i) your
-* ongoing acceptance of and compliance with the terms and conditions of
-* the Nick Galko License Agreement; and (ii) your inclusion of this notice
-* in any version of this software that you use or redistribute.
-* A copy of the NGTech License Agreement is available by contacting
-* Nick Galko. at https://galek.github.io/portfolio/
-*/
-import { Controller, Get, Request, Post, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth/auth.service';
 
-/**
- * Main app controller
- */
 @Controller()
 export class AppController {
-  constructor(private readonly authService: AuthService) { }
+  constructor(private readonly authService: AuthService) {}
 
   /**
    * Function what will generate a token from username-password
@@ -29,7 +13,7 @@ export class AppController {
    */
   @UseGuards(AuthGuard('local'))
   @Post('get-token')
-  public async login(@Request() req) {
+  public async login(@Req() req) {
     return this.authService.login(req.user);
   }
 
@@ -40,7 +24,7 @@ export class AppController {
    */
   @UseGuards(AuthGuard('jwt'))
   @Get('profile')
-  public getProfile(@Request() req) {
+  public getProfile(@Req() req) {
     return req.user;
   }
 }
