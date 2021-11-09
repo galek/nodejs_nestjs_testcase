@@ -8,9 +8,9 @@ The original version has been created in 2019, but I updated this is code to my 
 You can use this is repository as a template for your microservices (how I do)
 
 ### Older versions
-[2019 year](https://github.com)
+[2019 year](https://github.com/galek/nodejs_nestjs_testcase/tree/2019_archive)
 
-[Actual version](https://github.com)
+[Actual version](https://github.com/galek/nodejs_nestjs_testcase/tree/master)
 
 ### License: MIT
 
