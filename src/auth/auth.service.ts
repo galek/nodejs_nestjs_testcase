@@ -40,7 +40,7 @@ export class AuthService {
       '[AuthService.validateUser] invalid password has been provided',
     );
 
-    if (!(username?.length >= 0) || !(password?.length >= 0)) return undefined;
+    if (username?.length < 1 || password?.length < 1) return undefined;
 
     const user: User = this.usersService.findOne(username);
     if (user?.password !== password) return undefined;
