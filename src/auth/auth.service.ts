@@ -28,13 +28,13 @@ export class AuthService {
     constructor(private readonly usersService: UsersService, private readonly jwtService: JwtService) {
     }
 
-    public async validateUser(username: string, password: string): Promise<any> {
+    validateUser(username: string, password: string): Promise<any> {
         console.assert(username?.length > 0, '[] invalid username has been provided');
         console.assert(password?.length > 0, '[] invalid password has been provided');
 
         if (!(username?.length >= 0) || !(password?.length >= 0)) return undefined;
 
-        const user = await this.usersService.findOne(username);
+        const user = this.usersService.findOne(username);
         if (user?.password !== password) return undefined;
 
         const { ...result } = user;
@@ -49,7 +49,7 @@ export class AuthService {
         console.assert(user, '[AuthService.login] user is null');
         if (!user) return undefined;
 
-        const result = await this.validateUser(user.username, user.password);
+        const result = this.validateUser(user.username, user.password);
 
         console.assert(result, 'Invalid auth result');
 
