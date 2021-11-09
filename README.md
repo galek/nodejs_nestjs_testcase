@@ -1,5 +1,5 @@
 
-###Description
+### Description
 
 This is repository has been created as a demonstration of my skills for Bell Integrator company, for the vacancy of TechLead (NodeJS Backend Developer)
 
@@ -12,7 +12,7 @@ You can use this is repository as a template for your microservices (how I do)
 
 [Actual version](https://github.com)
 
-###License: MIT
+### License: MIT
 
 ### Building
 #### Check what .env file is exists or create own (or send args from command line)
@@ -30,5 +30,5 @@ You can use this is repository as a template for your microservices (how I do)
 1) [PM2 documentation](https://pm2.keymetrics.io/docs/usage/quick-start/).
 2) [Docker documentation](https://docs.docker.com/).
 3) [NestJS documentation](https://docs.nestjs.com/).
-###Used additional packages:
+### Used additional packages:
 https://github.com/willsoto/nestjs-prometheus
