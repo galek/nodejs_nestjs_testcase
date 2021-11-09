@@ -17,7 +17,11 @@ You can use this is repository as a template for your microservices (how I do)
 ### License: MIT
 
 ### Building
-#### Check what .env file is exists or create own (or send args from command line)
+#### Check what .env file is exists or create own (or send args from command line). 
+See: example.env as example (rename to production.env for production or development.env for development). 
+
+You can more info in ``package.json``. Or don't do anything, and config will be parsed by command line =) (see cross-env documentation).
+
 
 ### Features:
 - Swagger
