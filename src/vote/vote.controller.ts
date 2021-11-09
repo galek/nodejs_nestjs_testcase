@@ -17,7 +17,7 @@ export class VoteForDTO {
 @ApiTags('Vote service')
 @Controller('vote')
 export class VoteController {
-    constructor(private readonly dbDriver: DBDriverService, private readonly voteService: VoteService) {
+    constructor(private readonly dbDriver: DBDriverService) {
     }
 
     @UseGuards(JwtAuthGuard)

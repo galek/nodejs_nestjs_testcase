@@ -4,7 +4,7 @@ import { VersioningType } from "@nestjs/common";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import * as compression from 'compression';
 import * as helmet from "helmet";
-import * as csurf from 'csurf';
+// import * as csurf from 'csurf';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);

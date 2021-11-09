@@ -9,21 +9,15 @@ import { Injectable } from '@nestjs/common';
 export class DBDriverService {
     votesArray: Array<ResultObject> = new Array<ResultObject>();
 
-    /**
-     * Function for write value to db
-     * @public
-     */
     writeToDB(value: string): ResponseObject {
-        if (value?.length <= 1) return { success: false, description: "Invalid value has been provided" }
+        if (value?.length <= 1) return {
+            success: false, description: "[DBDriverService.writeToDB] Invalid value has been provided"
+        }
 
         return this._logicImpl(value);
     }
 
-    /**
-     * Implements get results from db function. It's NOT async function!
-     * @public
-     */
-    getResults() {
+    getResults(): Array<ResultObject> {
         this.votesArray.sort((a, b) => {
             if (a.votes > b.votes) {
                 return -1;

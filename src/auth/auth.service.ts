@@ -43,7 +43,7 @@ export class AuthService {
     }
 
     async login(user: AuthInfoAddInfoDTO) {
-        console.assert(user, '[AuthService.login] user is null');
+        console.assert(user, '[AuthService.login] user is invalid');
         if (!user) return undefined;
 
         const result = this.validateUser(user.username, user.password);
@@ -54,9 +54,7 @@ export class AuthService {
             return undefined
         }
 
-        // Generate access token
-        const payload = { username: user.username, sub: user.id };
-        const access_token = this.jwtService.sign(payload);
+        const access_token = this.jwtService.sign({ username: user.username, sub: user.id });
 
         return { access_token }
     }

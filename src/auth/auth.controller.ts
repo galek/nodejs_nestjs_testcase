@@ -2,6 +2,7 @@ import { Body, Controller, HttpException, HttpStatus, Post, UseGuards, Version }
 import { AuthInfoAddInfoDTO, AuthInfoDTO, AuthService } from "./auth.service";
 import { ApiBody, ApiTags } from "@nestjs/swagger";
 import { LocalAuthGuard } from "./common/guards/local-auth.guard";
+import { ResponseObject } from "../common/interfaces";
 
 @ApiTags('Authentication service')
 @Controller()
@@ -13,7 +14,7 @@ export class AuthController {
     @Post('get-token')
     @ApiBody({ type: AuthInfoDTO })
     @Version('1')
-    async login(@Body() body: AuthInfoAddInfoDTO) {
+    async login(@Body() body: AuthInfoAddInfoDTO): Promise<ResponseObject> {
 
         const result = await this.authService.login(body);
         if (!result) throw new HttpException({
@@ -23,6 +24,6 @@ export class AuthController {
             HttpStatus.BAD_REQUEST
         )
 
-        return { status: true, result }
+        return { success: true, data: result }
     }
 }
