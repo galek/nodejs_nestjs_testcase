@@ -5,11 +5,9 @@ WORKDIR /src
 
 COPY . .
 
-#RUN npm install --legacy-peer-deps
-RUN npm ci --legacy-peer-deps
+RUN npm ci --legacy-peer-deps || npm install --legacy-peer-deps
 RUN npm run build
-
-# TODO: check support npm prune --production
+RUN npm prune --production
 
 ### RUNNER ###
 FROM node:17.0.1-alpine3.14
