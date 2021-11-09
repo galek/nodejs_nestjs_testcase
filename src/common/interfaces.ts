@@ -29,11 +29,11 @@ export interface PayLoadObject {
 }
 
 /**
- * Interface of AbstactKey, what contains:
+ * Interface of AbstractKey, what contains:
  * accessToken
  * @public
  */
-export interface AbstactToken { access_token: string; }
+export interface AbstractToken { access_token: string; }
 
 /*bug list:
 Если токен протух, то пост запросы можно слать и они будут обрабатываться (в логах сервера),

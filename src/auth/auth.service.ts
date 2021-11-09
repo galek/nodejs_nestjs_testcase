@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
-import { AbstactToken } from '../common/interfaces';
+import { AbstractToken } from '../common/interfaces';
 
 @Injectable()
 export class AuthService {
@@ -29,7 +29,7 @@ export class AuthService {
    * @public
    * TODO: replace on one token FOR BELL
    */
-  public async login(user: any): Promise<AbstactToken> {
+  public async login(user: any): Promise<AbstractToken> {
     const payload = { username: user.username, sub: user.userId };
     return {
       access_token: this.jwtService.sign(payload),
