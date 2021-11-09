@@ -1,7 +1,7 @@
-import { Body, Controller, Get, HttpException, HttpStatus, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, HttpException, HttpStatus, Post, UseGuards } from '@nestjs/common';
 import { AuthInfoAddInfoDTO, AuthInfoDTO, AuthService } from "./auth.service";
 import { ApiBody, ApiTags } from "@nestjs/swagger";
-import { JwtAuthGuard } from "./common/guards/jwt-auth.guard";
+import { LocalAuthGuard } from "./common/guards/local-auth.guard";
 
 /**
  * Vote controller
@@ -12,10 +12,13 @@ export class AuthController {
     constructor(private readonly authService: AuthService) {
     }
 
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(LocalAuthGuard)
     @Post('login')
     @ApiBody({ type: AuthInfoDTO })
     public async login(@Body() body: AuthInfoAddInfoDTO) {
+        // TODO: remove it line
+        console.assert(false, 'sdas ' + JSON.stringify(body))
+
         const result = await this.authService.login(body);
         if (!result) throw new HttpException({
                 status: 'error',
@@ -27,9 +30,10 @@ export class AuthController {
         return { status: true, result }
     }
 
+    /*
     @UseGuards(JwtAuthGuard)
     @Get('profile')
-    public getProfile(@Req() req) {
-        return req.user;
-    }
+    public getProfile() {
+        return { status: true, value: 'test' }
+    }*/
 }
