@@ -14,13 +14,11 @@ export class AuthController {
     @ApiBody({ type: AuthInfoDTO })
     @Version('1')
     async login(@Body() body: AuthInfoAddInfoDTO) {
-        // TODO: remove it line
-        console.assert(false, 'sdas ' + JSON.stringify(body))
 
         const result = await this.authService.login(body);
         if (!result) throw new HttpException({
                 status: 'error',
-                error: 'Failed auth'
+                error: '[AuthController.login] Failed auth'
             },
             HttpStatus.BAD_REQUEST
         )

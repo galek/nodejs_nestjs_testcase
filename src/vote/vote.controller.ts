@@ -18,7 +18,7 @@ export class VoteController {
     @ApiBearerAuth('access-token')
     @Version('1')
     @Post()
-    async vote(@Body() data/*, @Req() req*/) {
+    async vote(@Body() data) {
         if (data) return { data }
 
         return { message: 'data is not exist' }

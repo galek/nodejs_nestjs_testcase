@@ -75,7 +75,7 @@ export class DBDriverService {
             if (console) console.warn('find before: ' + obj.votes);
             obj.votes++;
             if (console) console.warn('find now: ' + obj.votes);
-            return { success: true };
+            return { success: true }
             // TODO: тут определите логику как нужно
             // Обновляем дату последнего голоса
             // obj.timestamp = Date.now();
@@ -87,7 +87,8 @@ export class DBDriverService {
                 position: 0,
                 timestamp: Date.now(),
             });
-            return { success: true };
+
+            return { success: true }
         }
     }
 }

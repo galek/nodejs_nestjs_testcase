@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { UsersService } from '../users/users.service';
+import { User, UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { ApiProperty } from "@nestjs/swagger";
 
@@ -28,19 +28,16 @@ export class AuthService {
     constructor(private readonly usersService: UsersService, private readonly jwtService: JwtService) {
     }
 
-    validateUser(username: string, password: string): Promise<any> {
-        console.assert(username?.length > 0, '[] invalid username has been provided');
-        console.assert(password?.length > 0, '[] invalid password has been provided');
+    validateUser(username: string, password: string): Promise<User> {
+        console.assert(username?.length > 0, '[AuthService.validateUser] invalid username has been provided');
+        console.assert(password?.length > 0, '[AuthService.validateUser] invalid password has been provided');
 
         if (!(username?.length >= 0) || !(password?.length >= 0)) return undefined;
 
-        const user = this.usersService.findOne(username);
+        const user: User = this.usersService.findOne(username);
         if (user?.password !== password) return undefined;
 
         const { ...result } = user;
-
-        // TODO: remove it later
-        console.assert(false, JSON.stringify(result))
 
         return result;
     }
@@ -51,7 +48,7 @@ export class AuthService {
 
         const result = this.validateUser(user.username, user.password);
 
-        console.assert(result, 'Invalid auth result');
+        console.assert(result, '[AuthService.login] Invalid auth result');
 
         if (!result) {
             return undefined

@@ -3,10 +3,6 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
 import { jwtConstants } from "./constants";
 
-/**
- * class what provided validation by jwt
- * @public
- */
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
     constructor() {
@@ -17,12 +13,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         });
     }
 
-    /**
-     * Function what provided validation by jwt
-     * @public
-     */
-    // TODO: проверить - нужен ли async тут и типизацию
-    async validate(payload: any) {
+    validate(payload: { sub, username }) {
         return { userId: payload.sub, username: payload.username };
     }
 }
