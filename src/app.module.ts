@@ -11,10 +11,15 @@ import { VoteModule } from './vote/vote.module';
 import { DBDriverModule } from './DBDriver/dbdriver.module';
 import { ResultsModule } from './Results/results.module';
 import { PrometheusModule } from '@willsoto/nestjs-prometheus';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   controllers: [AppController],
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: (process.env.NODE_ENV ? process.env.NODE_ENV : '') + '.env',
+    }),
     PrometheusModule.register({
       path: '/metrics',
     }),
