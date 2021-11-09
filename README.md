@@ -1,3 +1,4 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=galek_nodejs_nestjs_testcase&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=galek_nodejs_nestjs_testcase)
 
 ### Description
 
@@ -17,7 +18,11 @@ You can use this is repository as a template for your microservices (how I do)
 ### License: MIT
 
 ### Building
-#### Check what .env file is exists or create own (or send args from command line)
+#### Check what .env file is exists or create own (or send args from command line). 
+See: example.env as example (rename to production.env for production or development.env for development). 
+
+You can more info in ``package.json``. Or don't do anything, and config will be parsed by command line =) (see cross-env documentation).
+
 
 ### Features:
 - Swagger
@@ -45,7 +50,9 @@ You can use this is repository as a template for your microservices (how I do)
 - maria-guess
 
 ### HealthChecs
-- liveness
+- readiness/liveness (terminus) - is not implemented
+- go to ``/healthCheck`` and if you got ``true`` when your service is alive
+- go to ``/metrics`` for collect of prometheus metrics
 
 ### Additional information:
 1) [PM2 documentation](https://pm2.keymetrics.io/docs/usage/quick-start/).
