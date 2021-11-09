@@ -13,7 +13,7 @@ export class UsersService {
     this.users = [
       {
         userId: 1,
-        username: 'john-changeme',
+        username: 'john',
         password: 'changeme',
       },
       {
