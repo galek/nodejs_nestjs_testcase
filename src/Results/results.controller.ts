@@ -1,4 +1,4 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import { Controller, Get, UseGuards, Version } from '@nestjs/common';
 import { ResultsService } from "./results.service";
 import { JwtAuthGuard } from "../auth/common/guards/jwt-auth.guard";
 import { ApiTags } from "@nestjs/swagger";
@@ -10,6 +10,7 @@ export class ResultsController {
     }
     @UseGuards(JwtAuthGuard)
     @Get()
+    @Version('1')
     async results() {
         return this.resultsService.results()
     }

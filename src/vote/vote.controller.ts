@@ -2,7 +2,7 @@
 1) Support uint numbers only for vote
 */
 
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards, Version } from '@nestjs/common';
 import { DBDriverService } from '../DBDriver/dbdriver.service';
 import { VoteService } from './vote.service';
 import { JwtAuthGuard } from "../auth/common/guards/jwt-auth.guard";
@@ -16,6 +16,7 @@ export class VoteController {
 
     @UseGuards(JwtAuthGuard)
     @ApiBearerAuth('access-token')
+    @Version('1')
     @Post()
     async vote(@Body() data/*, @Req() req*/) {
         if (data) return { data }
