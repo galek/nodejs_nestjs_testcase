@@ -4,7 +4,6 @@ export type User = any;
 
 /**
  * User-password container
- * TODO: replace on one token FOR BELL
  */
 @Injectable()
 export class UsersService {
