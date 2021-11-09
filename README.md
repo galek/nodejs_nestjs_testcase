@@ -45,7 +45,9 @@ You can use this is repository as a template for your microservices (how I do)
 - maria-guess
 
 ### HealthChecs
-- liveness
+- readiness/liveness (terminus) - is not implemented
+- go to ``/healthCheck`` and if you got ``true`` when your service is alive
+- go to ``/metrics`` for collect of prometheus metrics
 
 ### Additional information:
 1) [PM2 documentation](https://pm2.keymetrics.io/docs/usage/quick-start/).
