@@ -1,3 +1,4 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=galek_nodejs_nestjs_testcase&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=galek_nodejs_nestjs_testcase)
 
 ### Description
 
