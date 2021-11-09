@@ -45,7 +45,7 @@ export class AuthService {
         return result;
     }
 
-    public async login(user: AuthInfoAddInfoDTO) {
+    async login(user: AuthInfoAddInfoDTO) {
         console.assert(user, '[AuthService.login] user is null');
         if (!user) return undefined;
 

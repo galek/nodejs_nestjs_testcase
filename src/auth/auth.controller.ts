@@ -15,7 +15,7 @@ export class AuthController {
     @UseGuards(LocalAuthGuard)
     @Post('login')
     @ApiBody({ type: AuthInfoDTO })
-    public async login(@Body() body: AuthInfoAddInfoDTO) {
+    async login(@Body() body: AuthInfoAddInfoDTO) {
         // TODO: remove it line
         console.assert(false, 'sdas ' + JSON.stringify(body))
 

@@ -4,9 +4,10 @@ import { VoteController } from './vote.controller';
 import { DBDriverModule } from '../DBDriver/dbdriver.module';
 
 @Module({
-  controllers: [VoteController],
-  providers: [VoteService],
-  exports: [VoteService],
-  imports: [DBDriverModule],
+    controllers: [VoteController],
+    providers: [VoteService],
+    exports: [VoteService],
+    imports: [DBDriverModule],
 })
-export class VoteModule {}
+export class VoteModule {
+}

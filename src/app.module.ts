@@ -12,19 +12,20 @@ import { DBDriverModule } from './DBDriver/dbdriver.module';
 import { ResultsModule } from './Results/results.module';
 
 @Module({
-  controllers: [AppController],
-  imports: [
-    DBDriverModule,
-    ResultsModule,
-    VoteModule,
-    UsersModule,
-    AuthModule,
-    JwtModule.register({
-      secret: 'secret',
-      signOptions: { expiresIn: '60s' },
-    }),
-    PassportModule,
-  ],
-  providers: [AppService],
+    controllers: [AppController],
+    imports: [
+        DBDriverModule,
+        ResultsModule,
+        VoteModule,
+        UsersModule,
+        AuthModule,
+        JwtModule.register({
+            secret: 'secret',
+            signOptions: { expiresIn: '60s' },
+        }),
+        PassportModule,
+    ],
+    providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+}

@@ -3,8 +3,9 @@ import { ResultsService } from './results.service';
 import { DBDriverModule } from '../DBDriver/dbdriver.module';
 
 @Module({
-  imports: [DBDriverModule],
-  providers: [ResultsService],
-  exports: [ResultsService],
+    imports: [DBDriverModule],
+    providers: [ResultsService],
+    exports: [ResultsService],
 })
-export class ResultsModule {}
+export class ResultsModule {
+}

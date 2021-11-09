@@ -7,33 +7,33 @@ export type User = any;
  */
 @Injectable()
 export class UsersService {
-  private readonly users: User[];
+    private readonly users: User[];
 
-  constructor() {
-    this.users = [
-      {
-        userId: 1,
-        username: 'john',
-        password: 'changeme',
-      },
-      {
-        userId: 2,
-        username: 'chris',
-        password: 'secret',
-      },
-      {
-        userId: 3,
-        username: 'maria',
-        password: 'guess',
-      },
-    ];
-  }
+    constructor() {
+        this.users = [
+            {
+                userId: 1,
+                username: 'john',
+                password: 'changeme',
+            },
+            {
+                userId: 2,
+                username: 'chris',
+                password: 'secret',
+            },
+            {
+                userId: 3,
+                username: 'maria',
+                password: 'guess',
+            },
+        ];
+    }
 
-  /**
-   * Function what will find a user what associated username
-   * @public
-   */
-  public findOne(username: string): User {
-    return this.users.find((user) => user.username === username);
-  }
+    /**
+     * Function what will find a user what associated username
+     * @public
+     */
+    findOne(username: string): User {
+        return this.users.find((user) => user.username === username);
+    }
 }
