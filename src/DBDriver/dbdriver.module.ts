@@ -2,8 +2,7 @@ import { Module } from '@nestjs/common';
 import { DBDriverService } from './dbdriver.service';
 
 @Module({
-    providers: [DBDriverService],
-    exports: [DBDriverService],
+  providers: [DBDriverService],
+  exports: [DBDriverService],
 })
-export class DBDriverModule {
-}
+export class DBDriverModule {}

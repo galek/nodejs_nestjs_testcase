@@ -1,42 +1,28 @@
-﻿/*TODO:
-1) Support uint numbers only for vote
-*/
-
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+﻿import { Body, Controller, Post, UseGuards, Version } from '@nestjs/common';
 import { DBDriverService } from '../DBDriver/dbdriver.service';
-import { VoteService } from './vote.service';
-import { JwtAuthGuard } from "../auth/common/guards/jwt-auth.guard";
-import { ApiBearerAuth } from "@nestjs/swagger";
+import { JwtAuthGuard } from '../auth/common/guards/jwt-auth.guard';
+import { ApiBearerAuth, ApiProperty, ApiTags } from '@nestjs/swagger';
+import { ResponseObject } from '../common/interfaces';
 
-/**
- * Vote controller
- */
+export class VoteForDTO {
+  @ApiProperty({
+    type: String,
+    description: 'voteFor',
+    required: true,
+  })
+  voteFor: string;
+}
+
+@ApiTags('Vote service')
 @Controller('vote')
 export class VoteController {
-    constructor(private readonly dbDriver: DBDriverService, private readonly voteService: VoteService) {
-    }
+  constructor(private readonly dbDriver: DBDriverService) {}
 
-    @UseGuards(JwtAuthGuard)
-    @ApiBearerAuth('access-token')
-    @Post()
-    async vote(@Body() data/*, @Req() req*/) {
-        if (data) return { data }
-
-        return { message: 'data is not exist' }
-        // TODO: uncomment it
-        /*
-        // we have to check req.readable because of raw-body issue #57
-        // https://github.com/stream-utils/raw-body/issues/57
-        if (req.readable) {
-          // body is ignored by NestJS -> get raw body from request
-          const raw = await rawbody(req);
-          const text = raw.toString().trim();
-          if (console) console.log('body is readable:', text);
-          // TODO: Почитай, что это
-        } else {
-          // body is parsed by NestJS
-          if (console) console.log('data not readable:', data);
-          return this.dbDriver.writeToDB(data.voteFor);
-        }*/
-    }
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth('access-token')
+  @Version('1')
+  @Post()
+  async vote(@Body() data: VoteForDTO): Promise<ResponseObject> {
+    return this.dbDriver.writeToDB(data.voteFor);
+  }
 }

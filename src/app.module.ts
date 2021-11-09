@@ -10,22 +10,25 @@ import { UsersModule } from './users/users.module';
 import { VoteModule } from './vote/vote.module';
 import { DBDriverModule } from './DBDriver/dbdriver.module';
 import { ResultsModule } from './Results/results.module';
+import { PrometheusModule } from '@willsoto/nestjs-prometheus';
 
 @Module({
-    controllers: [AppController],
-    imports: [
-        DBDriverModule,
-        ResultsModule,
-        VoteModule,
-        UsersModule,
-        AuthModule,
-        JwtModule.register({
-            secret: 'secret',
-            signOptions: { expiresIn: '60s' },
-        }),
-        PassportModule,
-    ],
-    providers: [AppService],
+  controllers: [AppController],
+  imports: [
+    PrometheusModule.register({
+      path: '/metrics',
+    }),
+    DBDriverModule,
+    ResultsModule,
+    VoteModule,
+    UsersModule,
+    AuthModule,
+    JwtModule.register({
+      secret: 'secret',
+      signOptions: { expiresIn: '60s' },
+    }),
+    PassportModule,
+  ],
+  providers: [AppService],
 })
-export class AppModule {
-}
+export class AppModule {}

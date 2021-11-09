@@ -1,106 +1,46 @@
-﻿# NestJS Test-case
 
-# Building
+### Description
+
+This is repository has been created as a demonstration of my skills for Bell Integrator company, for the vacancy of TechLead (NodeJS Backend Developer)
+
+The original version has been created in 2019, but I updated this is code to my actual state of tech skill sets.
+
+You can use this is repository as a template for your microservices (how I do)
+
+### Older versions
+[2019 year](https://github.com/galek/nodejs_nestjs_testcase/tree/2019_archive)
+
+[Actual version](https://github.com/galek/nodejs_nestjs_testcase/tree/master)
+
+### License: MIT
+
+### Building
+#### Check what .env file is exists or create own (or send args from command line)
+
+### Features:
+- Swagger
+- Prometheus as monitoring tool
+- Sentry for reserve logging tool
+- SonarQube for code quality
+- Ready for using in docker/kubernetes (I hope what HELM charts you can create manually) 
+
+#### For local development
 - unpack archive to your directory
 - cd this directory
 - npm install (or npm ci in feature, if package-lock.json  is exist)
+#### For production build
+- If is docker will be used: ```sh build_docker.sh``` or ```docker build -t testcase .```
+- If is docker is not available: ```npm install pm2 -g && (npm ci || npm i) && (npm run build && pm2 start 'npm run start:prod')```
 
-- For development
-```bash
-npm run start
-```
-- For production
-```bash
-npm run start:prod
-```
+#### Swagger (OpenAPI)
+- Run your service
+- go to ``localhost:3000/api`` (port can be changed, and api endpoint in code) for swagger ui
+- go to ``localhost:3000/api/swagger.json`` for downloading swagger.json
 
-# Production
-- npm run start:prod
 
-## TODO
-- BD support (Mongo as example), with universal interface
-- Docker tests (needed infrastructure)
-- Admin panel
-
-## Documentation
-- For generation of documentation, run:
-```bash
-npm run doc
-```
-
-OR (For older versions of this)
-
-- If Typedoc not installed, run:
-```bash
-npm install --save-dev typedoc
-```
-- run this command:
-```bash
-$ typedoc --out ./doc ./src
-```
-
-## DOCKER
-### Docker not tested (I not have infrastructure)
-- For generation docker file you can use:
-https://www.npmjs.com/package/generator-docker
-- cd projectdir
-- docker build ../nodejs_nestjs_testcase-docker
-- docker run -p 3000 nodejs_nestjs_testcase-docker
-
-## REST API
-
-### Request
-
-`POST /get-token/`
-
-    curl --location --request POST 'localhost:3000/get-token/' 
-	--header 'Content-Type: application/json' 
-	--data-raw '{"username": "john", "password": "changeme"}'
-
-### Response
-
-    Status: 201 Created
-    X-Powered-By: Express
-    Content-Type: application/json; charset=utf-8
-    Content-Length: 182
-	ETag:W/"b6-ZHIAAOBoKYORpkQUqYDVNWsLh8U"
-	Date:Wed, 05 Feb 2020 16:45:18 GMT
-    Connection: keep-alive
-
-    {"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4iLCJzdWIiOjEsImlhdCI6MTU4MDkyMTExOCwiZXhwIjoxNTgwOTIxMTc4fQ.QDUNDmgIocHghNhPAUwPPG2y5qBV3jUohzLeVDh3RFE"}
-
-### Request
-
-`POST /vote/`
-
-    curl --location --request POST 'localhost:3000/vote/' --header 'Content-Type: application/x-www-form-urlencoded' --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4iLCJzdWIiOjEsImlhdCI6MTU4MDkyNDcxMiwiZXhwIjoxNTgwOTI0NzcyfQ.KX35tqEhpGEZ-E7QS8VgJNlJMEhyz6PkQJqC6FjFfrk' --data-urlencode 'voteFor=4'
-
-### Response
-
-    Status: 201 Created
-    X-Powered-By: Express
-    Content-Type: application/json; charset=utf-8
-    Content-Length: 16
-	ETag:W/"10-oV4hJxRVSENxc/wX8+mA4/Pe4tA"
-	Date:Wed, Wed, 05 Feb 2020 17:50:57 GMT
-    Connection: keep-alive
-
-    {"success":true}
-
-### Request
-
-`GET /results/`
-
-    curl --location --request POST 'localhost:3000/vote/' --header 'Content-Type: application/x-www-form-urlencoded' --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4iLCJzdWIiOjEsImlhdCI6MTU4MDkyNDcxMiwiZXhwIjoxNTgwOTI0NzcyfQ.KX35tqEhpGEZ-E7QS8VgJNlJMEhyz6PkQJqC6FjFfrk' --data-urlencode 'voteFor=4'
-
-### Response
-
-    Status: 201 Created
-    X-Powered-By: Express
-    Content-Type: application/json; charset=utf-8
-    Content-Length: 16
-	ETag:W/"10-oV4hJxRVSENxc/wX8+mA4/Pe4tA"
-	Date:Wed, Wed, 05 Feb 2020 17:50:57 GMT
-    Connection: keep-alive
-
-    [{"name":"4","votes":1,"position":1}]
+### Additional information:
+1) [PM2 documentation](https://pm2.keymetrics.io/docs/usage/quick-start/).
+2) [Docker documentation](https://docs.docker.com/).
+3) [NestJS documentation](https://docs.nestjs.com/).
+### Used additional packages:
+https://github.com/willsoto/nestjs-prometheus
