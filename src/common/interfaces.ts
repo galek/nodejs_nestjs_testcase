@@ -17,6 +17,7 @@ export interface ResultObject {
  */
 export interface ResponseObject {
   success: boolean;
+  description?: string;
 }
 
 /**
@@ -27,15 +28,3 @@ export interface ResponseObject {
 export interface PayLoadObject {
   voteFor: string;
 }
-
-/**
- * Interface of AbstractKey, what contains:
- * accessToken
- * @public
- */
-export interface AbstractToken { access_token: string; }
-
-/*bug list:
-Если токен протух, то пост запросы можно слать и они будут обрабатываться (в логах сервера),
-но не отображаться
-*/
