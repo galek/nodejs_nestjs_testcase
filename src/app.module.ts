@@ -8,8 +8,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { UsersModule } from './users/users.module';
 import { VoteModule } from './vote/vote.module';
-import { DBDriverModule } from './DBDriver/dbdriver.module';
-import { ResultsModule } from './Results/results.module';
+import { DBDriverModule } from './dbdriver/dbdriver.module';
+import { ResultsModule } from './results/results.module';
 import { PrometheusModule } from '@willsoto/nestjs-prometheus';
 import { ConfigModule } from '@nestjs/config';
 

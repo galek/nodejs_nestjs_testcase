@@ -36,7 +36,7 @@ You can more info in ``package.json``. Or don't do anything, and config will be 
 - cd this directory
 - ```npm install``` (or ```npm ci``` in feature, if ```package-lock.json``` is exist)
 #### For production build
-- If is docker will be used: ```sh build_docker.sh``` or ```docker build -t testcase .```
+- If is docker will be used: ```sh build_docker.sh``` or ```docker build -t testcase . && docker run testcase```
 - If is docker is not available: ```npm install pm2 -g && (npm ci || npm i) && (npm run build && pm2 start 'npm run start:prod')```
 
 #### Swagger (OpenAPI)

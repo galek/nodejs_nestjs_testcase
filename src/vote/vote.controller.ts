@@ -1,5 +1,5 @@
 ﻿import { Body, Controller, Post, UseGuards, Version } from '@nestjs/common';
-import { DBDriverService } from '../DBDriver/dbdriver.service';
+import { DBDriverService } from '../dbdriver/dbdriver.service';
 import { JwtAuthGuard } from '../auth/common/guards/jwt-auth.guard';
 import { ApiBearerAuth, ApiProperty, ApiTags } from '@nestjs/swagger';
 import { ResponseObject } from '../common/interfaces';

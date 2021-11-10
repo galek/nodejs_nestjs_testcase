@@ -20,6 +20,7 @@ export interface ResponseObject {
   description?: string;
   error?: string;
   data?: unknown;
+  debugInfo?: unknown;
 }
 
 /**
