@@ -60,3 +60,4 @@ You can more info in ``package.json``. Or don't do anything, and config will be 
 3) [NestJS documentation](https://docs.nestjs.com/).
 ### Used additional packages:
 https://github.com/willsoto/nestjs-prometheus
+https://github.com/nodeshift/helm
