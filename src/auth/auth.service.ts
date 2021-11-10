@@ -25,10 +25,8 @@ export class AuthInfoAddInfoDTO extends AuthInfoDTO {
 
 @Injectable()
 export class AuthService {
-  constructor(
-    private readonly usersService: UsersService,
-    private readonly jwtService: JwtService,
-  ) {}
+  constructor(private readonly usersService: UsersService, private readonly jwtService: JwtService) {
+  }
 
   validateUser(username: string, password: string): Promise<User> {
     console.assert(
@@ -50,7 +48,7 @@ export class AuthService {
     return result;
   }
 
-  async login(user: AuthInfoAddInfoDTO) {
+  login(user: AuthInfoAddInfoDTO) {
     console.assert(user, '[AuthService.login] user is invalid');
     if (!user) return undefined;
 
