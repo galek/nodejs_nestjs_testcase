@@ -7,14 +7,14 @@ import { Injectable } from '@nestjs/common';
  */
 @Injectable()
 export class DBDriverService {
-  votesArray: Array<ResultObject> = new Array<ResultObject>();
+  private readonly votesArray: Array<ResultObject> = new Array<ResultObject>();
 
   writeToDB(value: string): number {
     if (value?.length <= 1) {
       return -1;
     }
 
-    return this._logicImpl(value);
+    return this.logicImpl(value);
   }
 
   getResults(): Array<ResultObject> {
@@ -45,10 +45,10 @@ export class DBDriverService {
 
     // TODO: simplify
 
-    // Позиция не может быть отрицательной
+    // Позиция в рейтинге не может быть отрицательной
     let index = 1;
 
-    this.votesArray.forEach((element) => {
+    this.votesArray.forEach((element: ResultObject) => {
       element.position = index;
       index++;
     });
@@ -56,7 +56,7 @@ export class DBDriverService {
     return this.votesArray;
   }
 
-  private _logicImpl(value: string): number {
+  private logicImpl(value: string): number {
     const obj = this.votesArray.find((obj) => obj.name === value);
     if (!obj) {
       // Позиция не определена еще

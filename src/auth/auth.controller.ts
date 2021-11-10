@@ -23,7 +23,7 @@ export class AuthController {
   @ApiBody({ type: AuthInfoDTO })
   @Version('1')
   async login(@DebugHttp() debugInfo: DebugInfo, @Body() body: AuthInfoAddInfoDTO): Promise<ResponseObject> {
-    const result = await this.authService.login(body);
+    const result = this.authService.login(body);
     if (!result)
       throw new HttpException(
         {
