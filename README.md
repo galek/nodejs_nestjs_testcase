@@ -44,7 +44,14 @@ You can more info in ``package.json``. Or don't do anything, and config will be 
 - go to ``localhost:3000/api`` (port can be changed, and api endpoint in code) for swagger ui
 - go to ``localhost:3000/api/swagger.json`` for downloading swagger.json
 
-### Creditionals (username-password)
+### How a test
+- Run server
+- Go to ``localhost:3000/api`` and click ``v1/get-token`` (use accounts from below)
+- Copy-Paste ``access-token`` from response and use him for calling another methods
+- Call ``v1/vote`` and `v1/results`. Remember: Initial state what database is empty
+
+
+### Accounts (username-password)
 - john-changeme
 - chris-secret
 - maria-guess
