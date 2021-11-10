@@ -2,7 +2,8 @@
 import { DBDriverService } from '../dbdriver/dbdriver.service';
 import { JwtAuthGuard } from '../auth/common/guards/jwt-auth.guard';
 import { ApiBearerAuth, ApiProperty, ApiTags } from '@nestjs/swagger';
-import { ResponseObject } from '../common/interfaces';
+import { DebugInfo, ResponseObject } from '../common/interfaces';
+import { DebugHttp } from '../utils/debuginfo.decorator';
 
 export class VoteForDTO {
   @ApiProperty({
@@ -22,7 +23,20 @@ export class VoteController {
   @ApiBearerAuth('access-token')
   @Version('1')
   @Post()
-  async vote(@Body() data: VoteForDTO): Promise<ResponseObject> {
-    return this.dbDriver.writeToDB(data.voteFor);
+  async vote(@DebugHttp() debugInfo: DebugInfo, @Body() data: VoteForDTO): Promise<ResponseObject> {
+    const res: number = this.dbDriver.writeToDB(data.voteFor);
+    if (res === -1) {
+      debugInfo.description = '[DBDriverService.writeToDB] Invalid value has been provided';
+
+      return { success: false, debugInfo };
+    }
+
+    if (res === 0) {
+      debugInfo.description = 'created new user';
+      return { success: true, debugInfo };
+    }
+
+    debugInfo.description = 'increment for user';
+    return { success: true, debugInfo };
   }
 }

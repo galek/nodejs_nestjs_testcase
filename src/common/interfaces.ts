@@ -31,3 +31,10 @@ export interface ResponseObject {
 export interface PayLoadObject {
   voteFor: string;
 }
+
+export interface DebugInfo {
+  query: {[key:string]:string};
+  params: {[key:string]:string};
+  body: {[key:string]:string};
+  description?: string;
+}

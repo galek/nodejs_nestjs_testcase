@@ -1,4 +1,4 @@
-import { ResponseObject, ResultObject } from '../common/interfaces';
+import { ResultObject } from '../common/interfaces';
 import { Injectable } from '@nestjs/common';
 
 /**
@@ -9,13 +9,10 @@ import { Injectable } from '@nestjs/common';
 export class DBDriverService {
   votesArray: Array<ResultObject> = new Array<ResultObject>();
 
-  writeToDB(value: string): ResponseObject {
-    if (value?.length <= 1)
-      return {
-        success: false,
-        description:
-          '[DBDriverService.writeToDB] Invalid value has been provided',
-      };
+  writeToDB(value: string): number {
+    if (value?.length <= 1) {
+      return -1;
+    }
 
     return this._logicImpl(value);
   }
@@ -59,7 +56,7 @@ export class DBDriverService {
     return this.votesArray;
   }
 
-  private _logicImpl(value: string) {
+  private _logicImpl(value: string): number {
     const obj = this.votesArray.find((obj) => obj.name === value);
     if (!obj) {
       // Позиция не определена еще
@@ -70,14 +67,11 @@ export class DBDriverService {
         timestamp: Date.now(),
       });
 
-      return { success: true, debugInfo: 'created new user' };
+      return 0;
     }
 
     obj.votes++;
 
-    return { success: true, debugInfo: 'increment for user' };
-    // TODO: тут определите логику как нужно
-    // Обновляем дату последнего голоса
-    // obj.timestamp = Date.now();
+    return 1;
   }
 }
