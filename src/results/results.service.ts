@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { DBDriverService } from '../DBDriver/dbdriver.service';
+import { DBDriverService } from '../dbdriver/dbdriver.service';
 import { ResultObject } from '../common/interfaces';
 
 @Injectable()

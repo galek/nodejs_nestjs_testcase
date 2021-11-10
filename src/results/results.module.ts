@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ResultsService } from './results.service';
-import { DBDriverModule } from '../DBDriver/dbdriver.module';
+import { DBDriverModule } from '../dbdriver/dbdriver.module';
 import { ResultsController } from './results.controller';
 
 @Module({
