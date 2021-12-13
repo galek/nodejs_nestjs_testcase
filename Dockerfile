@@ -31,8 +31,6 @@ LABEL org.label-schema.url="https://galek.ru/"
 
 COPY --from=builder /src/dist /app
 COPY --from=builder /src/node_modules /app/node_modules
-COPY --from=builder /src/package.json /app/package.json
-COPY --from=builder /src/package-lock.json /app/package-lock.json
 
 CMD node /app/main
 
