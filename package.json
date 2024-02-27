@@ -32,7 +32,7 @@
     "compression": "^1.7.4",
     "csurf": "^1.11.0",
     "helmet": "^4.6.0",
-    "passport": "^0.4.1",
+    "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
     "prom-client": "^14.0.1",
